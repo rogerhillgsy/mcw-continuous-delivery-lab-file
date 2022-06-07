@@ -8,13 +8,13 @@ const app = express();
 const appInsights = require("applicationinsights");
 appInsights.setup("ba26048d-01b7-4071-9205-21d96265f8a7");
 appInsights.start();
-//
+
 app.use(express.static(path.join(__dirname, 'dist/content-web')));
 const contentApiUrl = process.env.CONTENT_API_URL || "http://localhost:3001";
 
 
 function getSessions(cb) {
-  request(contentApiUrl + '/sessions', function (err, response, body) {
+  request(contentApiUrl + '/sessions', function (err, response, body)
     if (err) {
       return cb(err);
     }
