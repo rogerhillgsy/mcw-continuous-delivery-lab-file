@@ -278,7 +278,10 @@ jobs:
   deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    if: github.event.review.state = 'approved'
     # condition: and( succeeded(), or(eq (needs.check_changed_folders.outputs.run_web_job, 'true'), eq( needs.check_changed_folders.outputs.run_api_job, 'true'), eq( needs.check_changed_folders.outputs.run_init_job, 'true')))
+    ## condition: and( succeeded(), ne( variables['Build.Reason'],'PullRequest'))
+
     environment: 
       name: Production
       url: https://fabmedical-web-640997.azurewebsites.net/
